@@ -3,25 +3,13 @@ const { Telegraf } = require('telegraf');
 const bot = new Telegraf('8160774464:AAEzu8xSICy9_c9PfI-tMIqZNKWWvN-EpWk');
 
 bot.start((ctx) => {
-    ctx.replyWithPhoto(
-        { url: 'https://files.grok.x.ai/grok/attachments/Neon%20Green%20Dark%20Modern%20Fitness%20YouTube%20Banner.jpeg' },
-        {
-            caption: `👋 *ЧУВСТВО FOMO*
+    ctx.reply(`👋 *Это ваш FOMO Bot*
 
-Создай устойчивую систему управления капиталом, в которой прибыль становится закономерным результатом.
+Поможет вам разобраться в сфере инвестиций в секторе DeFi.`, {
+        parse_mode: 'Markdown'
+    });
 
-Что умеет этот бот?
-Помогает выстроить систему управления капиталом, где доходность становится стабильным и прогнозируемым результатом.
-
-Жми кнопку ниже, чтобы начать 👇`,
-            parse_mode: 'Markdown',
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '🚀 Начать', callback_data: 'start_menu' }]
-                ]
-            }
-        }
-    );
+    setTimeout(() => showMainMenu(ctx), 500);
 });
 
 bot.command('menu', (ctx) => showMainMenu(ctx));
@@ -42,38 +30,17 @@ function showMainMenu(ctx) {
     });
 }
 
-// ==================== ОБРАБОТКА ВСЕХ РАЗДЕЛОВ ====================
+// ==================== ОБРАБОТКА ====================
 bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
     const data = ctx.callbackQuery.data;
 
-    if (data === 'start_menu') {
-        showMainMenu(ctx);
-    } 
-
-    // Анкета
-    else if (data === 'anketa') {
+    if (data === 'anketa') {
         await ctx.reply(`📝 *Анкета участника*
 
 👋 Добро пожаловать в школу DeFi «Чувство FOMO».
 
-Ответьте на несколько вопросов, чтобы мы могли подобрать для вас наиболее подходящий формат.
-
-1. Ваш уровень знаний о криптовалюте:
-   • Новичок
-   • Базовый
-   • Продвинутый
-
-2. Что сейчас актуально для вас?
-   • Сбережения теряют ценность
-   • Хочу увеличить капитал
-   • Ищу пассивный доход
-   • Планирую финансовое будущее
-
-3. Ваша главная цель?
-   • Дополнительный доход
-   • Пассивный доход
-   • Рост капитала
+ТЕСТ ОБНОВЛЕНИЯ — ЕСЛИ ТЫ ВИДИШЬ ЭТУ СТРОКУ, ЗНАЧИТ НОВАЯ ВЕРСИЯ РАБОТАЕТ!
 
 Пришлите свои ответы! Мы подготовим для вас стратегию обучения и развития в DeFi.`, {
             parse_mode: 'Markdown',
@@ -95,4 +62,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot запущен (полная версия)');
+console.log('✅ FOMO Bot — ТЕСТОВАЯ ВЕРСИЯ 13:20');
