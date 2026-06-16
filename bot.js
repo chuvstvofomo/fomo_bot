@@ -24,7 +24,7 @@ function showMainMenu(ctx) {
                 [{ text: '🎓 Школа DEFI', callback_data: 'school_defi' }],
                 [{ text: '⭐ FOMO VIP TEAM', url: 'https://t.me/chuvstvofomo_vip' }],
                 [{ text: '📞 Личное сопровождение', callback_data: 'personal' }],
-                [{ text: '✍️ Задать вопрос', url: 'https://t.me/yoromario' }],   // Прямая ссылка
+                [{ text: '✍️ Задать вопрос', url: 'https://t.me/yoromario' }],
                 [{ text: '🌐 Социальные сети', callback_data: 'social' }]
             ]
         }
@@ -125,6 +125,62 @@ bot.on('callback_query', async (ctx) => {
         });
     } 
 
+    // FOMO VIP TEAM
+    else if (data === 'fomo_vip') {
+        await ctx.reply('⭐ *FOMO VIP TEAM*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Личное сопровождение
+    else if (data === 'personal') {
+        await ctx.reply(`📞 *Личное сопровождение*
+
+Индивидуальная работа с наставником.
+
+Помогаю инвесторам выстроить персональную стратегию, минимизировать риски и уверенно увеличивать капитал.`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '📩 Оставить заявку', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Задать вопрос
+    else if (data === 'ask_question') {
+        await ctx.reply('✍️ *Задать вопрос*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Социальные сети
+    else if (data === 'social') {
+        await ctx.reply('🌐 *Социальные сети*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: 'Telegram', url: 'https://t.me/chuvstvofomo' }],
+                    [{ text: 'Instagram', url: 'https://www.instagram.com/yo.romario' }],
+                    [{ text: 'TikTok', url: 'https://www.tiktok.com/@yo.romario' }],
+                    [{ text: 'YouTube', url: 'https://www.youtube.com/@chuvstvofomo' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
     else if (data === 'back_to_menu') {
         showMainMenu(ctx);
     } 
@@ -134,4 +190,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — приветствие и "Задать вопрос" обновлены');
+console.log('✅ FOMO Bot — Личное сопровождение и Социальные сети восстановлены');
