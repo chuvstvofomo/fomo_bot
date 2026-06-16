@@ -3,13 +3,25 @@ const { Telegraf } = require('telegraf');
 const bot = new Telegraf('8160774464:AAEzu8xSICy9_c9PfI-tMIqZNKWWvN-EpWk');
 
 bot.start((ctx) => {
-    ctx.reply(`👋 *Это ваш FOMO Bot*
+    ctx.replyWithPhoto(
+        { url: 'https://files.grok.x.ai/grok/attachments/Neon%20Green%20Dark%20Modern%20Fitness%20YouTube%20Banner.jpeg' },
+        {
+            caption: `👋 *ЧУВСТВО FOMO*
 
-Поможет вам разобраться в сфере инвестиций в секторе DeFi.`, {
-        parse_mode: 'Markdown'
-    });
+Создай устойчивую систему управления капиталом, в которой прибыль становится закономерным результатом.
 
-    setTimeout(() => showMainMenu(ctx), 500);
+Что умеет этот бот?
+Помогает выстроить систему управления капиталом, где доходность становится стабильным и прогнозируемым результатом.
+
+Жми кнопку ниже, чтобы начать 👇`,
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '🚀 Начать', callback_data: 'start_menu' }]
+                ]
+            }
+        }
+    );
 });
 
 bot.command('menu', (ctx) => showMainMenu(ctx));
@@ -35,8 +47,12 @@ bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
     const data = ctx.callbackQuery.data;
 
+    if (data === 'start_menu') {
+        showMainMenu(ctx);
+    } 
+
     // Анкета
-    if (data === 'anketa') {
+    else if (data === 'anketa') {
         await ctx.reply(`📝 *Анкета участника*
 
 👋 Добро пожаловать в школу DeFi «Чувство FOMO».
@@ -70,82 +86,6 @@ bot.on('callback_query', async (ctx) => {
         });
     } 
 
-    // Школа DEFI
-    else if (data === 'school_defi') {
-        await ctx.reply(`🎓 *Школа DEFI*
-
-Добро пожаловать в нашу школу децентрализованных финансов!`, {
-            parse_mode: 'Markdown',
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '📚 Программа курса', callback_data: 'course_program' }],
-                    [{ text: '💰 Узнать цены', callback_data: 'prices' }],
-                    [{ text: '📝 Подать заявку', callback_data: 'apply_school' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
-    // FOMO VIP TEAM
-    else if (data === 'fomo_vip') {
-        await ctx.reply('⭐ *FOMO VIP TEAM*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
-    // Личное сопровождение
-    else if (data === 'personal') {
-        await ctx.reply(`📞 *Личное сопровождение*
-
-Индивидуальная работа с наставником.
-
-Помогаю инвесторам выстроить персональную стратегию, минимизировать риски и уверенно увеличивать капитал.`, {
-            parse_mode: 'Markdown',
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '📩 Оставить заявку', callback_data: 'personal_request' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-    else if (data === 'personal_request') {
-        await ctx.reply(`✅ Заявка получена!\n\nДобрый день!\n\nСпасибо за интерес.\nСкоро с вами свяжутся.`);
-    } 
-
-    // Задать вопрос
-    else if (data === 'ask_question') {
-        await ctx.reply('✍️ *Задать вопрос*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
-    // Социальные сети
-    else if (data === 'social') {
-        await ctx.reply('🌐 *Социальные сети*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: 'Telegram', url: 'https://t.me/chuvstvofomo' }],
-                    [{ text: 'Instagram', url: 'https://www.instagram.com/yo.romario' }],
-                    [{ text: 'TikTok', url: 'https://www.tiktok.com/@yo.romario' }],
-                    [{ text: 'YouTube', url: 'https://www.youtube.com/@chuvstvofomo' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
     else if (data === 'back_to_menu') {
         showMainMenu(ctx);
     } 
@@ -155,4 +95,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — полная версия');
+console.log('✅ FOMO Bot запущен (полная версия)');
