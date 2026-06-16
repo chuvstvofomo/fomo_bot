@@ -19,6 +19,7 @@ function showMainMenu(ctx) {
         parse_mode: 'Markdown',
         reply_markup: {
             inline_keyboard: [
+                [{ text: '👥 ЧУВСТВО FOMO', url: 'https://t.me/chuvstvofomo' }],
                 [{ text: '📝 Анкета', callback_data: 'anketa' }],
                 [{ text: '🎓 Школа DEFI', callback_data: 'school_defi' }],
                 [{ text: '⭐ FOMO VIP TEAM', callback_data: 'fomo_vip' }],
@@ -162,4 +163,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — цены и заявки добавлены');
+console.log('✅ FOMO Bot — добавлен пункт ЧУВСТВО FOMO');
