@@ -87,6 +87,24 @@ bot.on('callback_query', async (ctx) => {
         });
     } 
 
+    // Программа курса (4 модуля)
+    else if (data === 'course_program') {
+        await ctx.reply(`📚 *Программа курса*
+
+1. Модуль 1 — Основы DeFi
+2. Модуль 2 — DEX и торговля
+3. Модуль 3 — Безопасность и защита активов
+4. Модуль 4 — Инвестиционные стратегии`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '← Назад в Школу DEFI', callback_data: 'school_defi' }],
+                    [{ text: '🏠 Главное меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
     // FOMO VIP TEAM
     else if (data === 'fomo_vip') {
         await ctx.reply('⭐ *FOMO VIP TEAM*', {
@@ -155,4 +173,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — полная версия');
+console.log('✅ FOMO Bot — полная версия с Программой курса');
