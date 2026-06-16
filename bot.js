@@ -1,4 +1,3 @@
-// ==================== FOMO BOT ====================
 const { Telegraf } = require('telegraf');
 
 const bot = new Telegraf('8160774464:AAEzu8xSICy9_c9PfI-tMIqZNKWWvN-EpWk');
@@ -31,7 +30,7 @@ function showMainMenu(ctx) {
     });
 }
 
-// ==================== ОБРАБОТКА РАЗДЕЛОВ ====================
+// ==================== ОСНОВНАЯ ЛОГИКА ====================
 bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
     const data = ctx.callbackQuery.data;
@@ -39,14 +38,22 @@ bot.on('callback_query', async (ctx) => {
     if (data === 'school_defi') {
         await ctx.reply(`🎓 *Школа DEFI*
 
-Добро пожаловать в нашу школу!`, {
+Добро пожаловать!`, {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
                     [{ text: '📚 Программа курса', callback_data: 'course_program' }],
-                    [{ text: '💰 Узнать цены', callback_data: 'prices' }],
-                    [{ text: '📝 Подать заявку', callback_data: 'apply_school' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                    [{ text: '← Назад', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+    else if (data === 'fomo_vip') {
+        await ctx.reply('⭐ *FOMO VIP TEAM*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
+                    [{ text: '← Назад', callback_data: 'back_to_menu' }]
                 ]
             }
         });
@@ -54,20 +61,38 @@ bot.on('callback_query', async (ctx) => {
     else if (data === 'personal') {
         await ctx.reply(`📞 *Личное сопровождение*
 
-Индивидуальная работа с наставником.
-
-Помогаю выстроить персональную стратегию и минимизировать риски.`, {
+Индивидуальная работа с наставником.`, {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
                     [{ text: '📩 Оставить заявку', callback_data: 'personal_request' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                    [{ text: '← Назад', callback_data: 'back_to_menu' }]
                 ]
             }
         });
     } 
-    else if (data === 'personal_request') {
-        await ctx.reply(`✅ Заявка получена!\n\nДобрый день!\nСпасибо за интерес. Скоро с вами свяжутся.`);
+    else if (data === 'ask_question') {
+        await ctx.reply('✍️ *Задать вопрос*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+    else if (data === 'social') {
+        await ctx.reply('🌐 *Социальные сети*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: 'Telegram', url: 'https://t.me/chuvstvofomo' }],
+                    [{ text: 'Instagram', url: 'https://www.instagram.com/yo.romario' }],
+                    [{ text: 'TikTok', url: 'https://www.tiktok.com/@yo.romario' }],
+                    [{ text: 'YouTube', url: 'https://www.youtube.com/@chuvstvofomo' }],
+                    [{ text: '← Назад', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
     } 
     else if (data === 'back_to_menu') {
         showMainMenu(ctx);
@@ -78,4 +103,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot запущен');
+console.log('✅ FOMO Bot запущен (чистая версия)');
