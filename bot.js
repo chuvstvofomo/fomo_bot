@@ -30,12 +30,50 @@ function showMainMenu(ctx) {
     });
 }
 
-// ==================== ШКОЛА DEFI ====================
+// ==================== ОБРАБОТКА ВСЕХ РАЗДЕЛОВ ====================
 bot.on('callback_query', async (ctx) => {
     await ctx.answerCbQuery();
     const data = ctx.callbackQuery.data;
 
-    if (data === 'school_defi') {
+    // Анкета
+    if (data === 'anketa') {
+        await ctx.reply(`📝 *Анкета участника*
+
+👋 Добро пожаловать в школу DeFi «Чувство FOMO».
+
+Ответьте на несколько вопросов, чтобы мы могли подобрать для вас наиболее подходящий формат.
+
+1. Ваш уровень знаний о криптовалюте:
+• Новичок
+• Базовый
+• Продвинутый
+
+2. Что сейчас актуально для вас?
+• Сбережения теряют ценность
+• Хочу увеличить капитал
+• Ищу пассивный доход
+• Планирую финансовое будущее
+
+3. Ваша главная цель?
+• Дополнительный доход
+• Пассивный доход
+• Рост капитала
+
+Спасибо за ответы!
+
+Оставьте ваш контакт, и мы свяжемся с вами.`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Школа DEFI
+    else if (data === 'school_defi') {
         await ctx.reply(`🎓 *Школа DEFI*
 
 Добро пожаловать в нашу школу децентрализованных финансов!`, {
@@ -45,46 +83,25 @@ bot.on('callback_query', async (ctx) => {
                     [{ text: '📚 Программа курса', callback_data: 'course_program' }],
                     [{ text: '💰 Узнать цены', callback_data: 'prices' }],
                     [{ text: '📝 Подать заявку', callback_data: 'apply_school' }],
-                    [{ text: '✍️ Задать вопрос', callback_data: 'ask_school' }],
                     [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
                 ]
             }
         });
     } 
 
-    else if (data === 'course_program') {
-        await ctx.reply(`📚 *Программа курса*`, {
-            parse_mode: 'Markdown',
+    // FOMO VIP TEAM
+    else if (data === 'fomo_vip') {
+        await ctx.reply('⭐ *FOMO VIP TEAM*', {
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: '📖 Модуль 1 — Основы DeFi', callback_data: 'module1' }],
-                    [{ text: '🔗 Модуль 2 — DEX и торговля', callback_data: 'module2' }],
-                    [{ text: '🛡️ Модуль 3 — Безопасность', callback_data: 'module3' }],
-                    [{ text: '💼 Модуль 4 — Инвестиционные стратегии', callback_data: 'module4' }],
-                    [{ text: '← Назад', callback_data: 'school_defi' }],
-                    [{ text: '🏠 Главное меню', callback_data: 'back_to_menu' }]
+                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
                 ]
             }
         });
     } 
 
-    else if (data === 'prices') {
-        await ctx.reply('💰 *Узнать цены*\n\nИнформация о стоимости курсов.');
-    } 
-    else if (data === 'apply_school') {
-        await ctx.reply('📝 *Подать заявку на обучение*\n\nНапишите @yoromario');
-    } 
-    else if (data === 'ask_school') {
-        await ctx.reply('✍️ *Задать вопрос по школе*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }]
-                ]
-            }
-        });
-    } 
-
-    // Остальные разделы
+    // Личное сопровождение
     else if (data === 'personal') {
         await ctx.reply(`📞 *Личное сопровождение*
 
@@ -103,9 +120,8 @@ bot.on('callback_query', async (ctx) => {
     else if (data === 'personal_request') {
         await ctx.reply(`✅ Заявка получена!\n\nДобрый день!\n\nСпасибо за интерес.\nСкоро с вами свяжутся.`);
     } 
-    else if (data === 'back_to_menu') {
-        showMainMenu(ctx);
-    } 
+
+    // Задать вопрос
     else if (data === 'ask_question') {
         await ctx.reply('✍️ *Задать вопрос*', {
             reply_markup: {
@@ -116,6 +132,8 @@ bot.on('callback_query', async (ctx) => {
             }
         });
     } 
+
+    // Социальные сети
     else if (data === 'social') {
         await ctx.reply('🌐 *Социальные сети*', {
             reply_markup: {
@@ -129,17 +147,14 @@ bot.on('callback_query', async (ctx) => {
             }
         });
     } 
-    else if (data === 'fomo_vip') {
-        await ctx.reply('⭐ *FOMO VIP TEAM*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
+
+    else if (data === 'back_to_menu') {
+        showMainMenu(ctx);
+    } 
+    else {
+        await ctx.reply('Раздел в разработке...');
     }
 });
 
 bot.launch();
-console.log('✅ Добавлена кнопка "Главное меню"');
+console.log('✅ FOMO Bot — полная версия');
