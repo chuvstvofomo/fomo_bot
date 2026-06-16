@@ -22,7 +22,7 @@ function showMainMenu(ctx) {
                 [{ text: '👥 ЧУВСТВО FOMO', url: 'https://t.me/chuvstvofomo' }],
                 [{ text: '📝 Анкета', callback_data: 'anketa' }],
                 [{ text: '🎓 Школа DEFI', callback_data: 'school_defi' }],
-                [{ text: '⭐ FOMO VIP TEAM', callback_data: 'fomo_vip' }],
+                [{ text: '⭐ FOMO VIP TEAM', url: 'https://t.me/chuvstvofomo_vip' }],   // Прямая ссылка
                 [{ text: '📞 Личное сопровождение', callback_data: 'personal' }],
                 [{ text: '✍️ Задать вопрос', callback_data: 'ask_question' }],
                 [{ text: '🌐 Социальные сети', callback_data: 'social' }]
@@ -125,35 +125,6 @@ bot.on('callback_query', async (ctx) => {
         });
     } 
 
-    // FOMO VIP TEAM
-    else if (data === 'fomo_vip') {
-        await ctx.reply('⭐ *FOMO VIP TEAM*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
-    // Личное сопровождение
-    else if (data === 'personal') {
-        await ctx.reply(`📞 *Личное сопровождение*
-
-Индивидуальная работа с наставником.
-
-Помогаю инвесторам выстроить персональную стратегию, минимизировать риски и уверенно увеличивать капитал.`, {
-            parse_mode: 'Markdown',
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '📩 Оставить заявку', url: 'https://t.me/yoromario' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
     else if (data === 'back_to_menu') {
         showMainMenu(ctx);
     } 
@@ -163,4 +134,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — добавлен пункт ЧУВСТВО FOMO');
+console.log('✅ FOMO Bot — ЧУВСТВО FOMO и FOMO VIP TEAM с прямыми ссылками');
