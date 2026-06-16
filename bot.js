@@ -80,7 +80,7 @@ bot.on('callback_query', async (ctx) => {
                 inline_keyboard: [
                     [{ text: '📚 Программа курса', callback_data: 'course_program' }],
                     [{ text: '💰 Узнать цены', callback_data: 'prices' }],
-                    [{ text: '📝 Подать заявку', callback_data: 'apply_school' }],
+                    [{ text: '📝 Оставить заявку', url: 'https://t.me/yoromario' }],
                     [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
                 ]
             }
@@ -98,6 +98,7 @@ bot.on('callback_query', async (ctx) => {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
+                    [{ text: '📝 Оставить заявку на курс', url: 'https://t.me/yoromario' }],
                     [{ text: '← Назад в Школу DEFI', callback_data: 'school_defi' }],
                     [{ text: '🏠 Главное меню', callback_data: 'back_to_menu' }]
                 ]
@@ -173,4 +174,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — полная версия с смайлами');
+console.log('✅ FOMO Bot — полная версия с заявками');
