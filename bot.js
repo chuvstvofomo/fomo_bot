@@ -41,7 +41,7 @@ bot.on('callback_query', async (ctx) => {
 
 👋 Добро пожаловать в школу DeFi «Чувство FOMO».
 
-Ответьте на несколько вопросов...
+Ответьте на несколько вопросов, чтобы мы могли подобрать для вас наиболее подходящий формат.
 
 1. Ваш уровень знаний о криптовалюте:
    • Новичок
@@ -59,12 +59,87 @@ bot.on('callback_query', async (ctx) => {
    • Пассивный доход
    • Рост капитала
 
-
 Пришлите свои ответы! Мы подготовим для вас стратегию обучения и развития в DeFi.`, {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
                     [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Школа DEFI
+    else if (data === 'school_defi') {
+        await ctx.reply(`🎓 *Школа DEFI*
+
+Добро пожаловать в нашу школу децентрализованных финансов!`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '📚 Программа курса', callback_data: 'course_program' }],
+                    [{ text: '💰 Узнать цены', callback_data: 'prices' }],
+                    [{ text: '📝 Подать заявку', callback_data: 'apply_school' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // FOMO VIP TEAM
+    else if (data === 'fomo_vip') {
+        await ctx.reply('⭐ *FOMO VIP TEAM*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '👑 Перейти в VIP канал', url: 'https://t.me/chuvstvofomo_vip' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Личное сопровождение
+    else if (data === 'personal') {
+        await ctx.reply(`📞 *Личное сопровождение*
+
+Индивидуальная работа с наставником.
+
+Помогаю инвесторам выстроить персональную стратегию, минимизировать риски и уверенно увеличивать капитал.`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '📩 Оставить заявку', callback_data: 'personal_request' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+    else if (data === 'personal_request') {
+        await ctx.reply(`✅ Заявка получена!\n\nДобрый день!\n\nСпасибо за интерес.\nСкоро с вами свяжутся.`);
+    } 
+
+    // Задать вопрос
+    else if (data === 'ask_question') {
+        await ctx.reply('✍️ *Задать вопрос*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
+    // Социальные сети
+    else if (data === 'social') {
+        await ctx.reply('🌐 *Социальные сети*', {
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: 'Telegram', url: 'https://t.me/chuvstvofomo' }],
+                    [{ text: 'Instagram', url: 'https://www.instagram.com/yo.romario' }],
+                    [{ text: 'TikTok', url: 'https://www.tiktok.com/@yo.romario' }],
+                    [{ text: 'YouTube', url: 'https://www.youtube.com/@chuvstvofomo' }],
                     [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
                 ]
             }
@@ -80,4 +155,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — ТЕСТОВАЯ ВЕРСИЯ');
+console.log('✅ FOMO Bot — полная версия');
