@@ -59,9 +59,7 @@ bot.on('callback_query', async (ctx) => {
 • Пассивный доход
 • Рост капитала
 
-Спасибо за ответы!
-
-Оставьте ваш контакт, и мы свяжемся с вами.`, {
+Спасибо за ответы! Мы подготовим для вас персональную стратегию обучения и развития в DeFi.`, {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
@@ -157,4 +155,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — полная версия');
+console.log('✅ FOMO Bot — полная версия с обновлённой анкетой');
