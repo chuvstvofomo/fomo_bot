@@ -106,6 +106,24 @@ bot.on('callback_query', async (ctx) => {
         });
     } 
 
+    // Цены
+    else if (data === 'prices') {
+        await ctx.reply(`💰 *Узнать цены*
+
+*Вход в DeFi* — 19 990 ₽  
+*DeFi Trader* — 39 990 ₽  
+*DeFi Investor System* — 59 990 ₽`, {
+            parse_mode: 'Markdown',
+            reply_markup: {
+                inline_keyboard: [
+                    [{ text: '📝 Оставить заявку', url: 'https://t.me/yoromario' }],
+                    [{ text: '← Назад в Школу DEFI', callback_data: 'school_defi' }],
+                    [{ text: '🏠 Главное меню', callback_data: 'back_to_menu' }]
+                ]
+            }
+        });
+    } 
+
     // FOMO VIP TEAM
     else if (data === 'fomo_vip') {
         await ctx.reply('⭐ *FOMO VIP TEAM*', {
@@ -128,37 +146,7 @@ bot.on('callback_query', async (ctx) => {
             parse_mode: 'Markdown',
             reply_markup: {
                 inline_keyboard: [
-                    [{ text: '📩 Оставить заявку', callback_data: 'personal_request' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-    else if (data === 'personal_request') {
-        await ctx.reply(`✅ Заявка получена!\n\nДобрый день!\n\nСпасибо за интерес.\nСкоро с вами свяжутся.`);
-    } 
-
-    // Задать вопрос
-    else if (data === 'ask_question') {
-        await ctx.reply('✍️ *Задать вопрос*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: '💬 Написать @yoromario', url: 'https://t.me/yoromario' }],
-                    [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
-                ]
-            }
-        });
-    } 
-
-    // Социальные сети
-    else if (data === 'social') {
-        await ctx.reply('🌐 *Социальные сети*', {
-            reply_markup: {
-                inline_keyboard: [
-                    [{ text: 'Telegram', url: 'https://t.me/chuvstvofomo' }],
-                    [{ text: 'Instagram', url: 'https://www.instagram.com/yo.romario' }],
-                    [{ text: 'TikTok', url: 'https://www.tiktok.com/@yo.romario' }],
-                    [{ text: 'YouTube', url: 'https://www.youtube.com/@chuvstvofomo' }],
+                    [{ text: '📩 Оставить заявку', url: 'https://t.me/yoromario' }],
                     [{ text: '← Назад в меню', callback_data: 'back_to_menu' }]
                 ]
             }
@@ -174,4 +162,4 @@ bot.on('callback_query', async (ctx) => {
 });
 
 bot.launch();
-console.log('✅ FOMO Bot — полная версия с заявками');
+console.log('✅ FOMO Bot — цены и заявки добавлены');
